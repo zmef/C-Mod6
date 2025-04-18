@@ -19,20 +19,42 @@ int main()
     return 0;
 }
 
+// Function to find the highest number in the array
 int getHighest(const int nums[], int size)
 {
+    if (size <= 0) // Handle edge case for empty array
+    {
+        cout << "Error: Array size must be greater than 0.\n";
+        return -1; // Return an error value
+    }
+
     int highest = nums[0];
     for (int i = 1; i < size; ++i)
+    {
         if (nums[i] > highest)
+        {
             highest = nums[i];
+        }
+    }
     return highest;
 }
 
+// Function to find the lowest number in the array
 int getLowest(const int nums[], int size)
 {
+    if (size <= 0) // Handle edge case for empty array
+    {
+        cout << "Error: Array size must be greater than 0.\n";
+        return -1; // Return an error value
+    }
+
     int lowest = nums[0];
     for (int i = 1; i < size; ++i)
+    {
         if (nums[i] < lowest)
+        {
             lowest = nums[i];
+        }
+    }
     return lowest;
 }

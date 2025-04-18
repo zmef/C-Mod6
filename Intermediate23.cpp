@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <iomanip>
+#include <limits> // For numeric_limits
 using namespace std;
 
 int main()
@@ -13,11 +14,31 @@ int main()
 
     for (int i = 0; i < DAYS; ++i)
     {
-        cout << "Enter high temperature for day " << i + 1 << ": ";
-        cin >> temperatures[i][0];
+        // Input high temperature with validation
+        do
+        {
+            cout << "Enter high temperature for day " << i + 1 << ": ";
+            cin >> temperatures[i][0];
+            if (cin.fail() || temperatures[i][0] < -100 || temperatures[i][0] > 150)
+            {
+                cout << "Invalid input. Please enter a valid temperature (-100 to 150).\n";
+                cin.clear(); // Clear error flag
+                cin.ignore(numeric_limits<streamsize>::max(), '\n'); // Discard invalid input
+            }
+        } while (cin.fail() || temperatures[i][0] < -100 || temperatures[i][0] > 150);
 
-        cout << "Enter low temperature for day " << i + 1 << ": ";
-        cin >> temperatures[i][1];
+        // Input low temperature with validation
+        do
+        {
+            cout << "Enter low temperature for day " << i + 1 << ": ";
+            cin >> temperatures[i][1];
+            if (cin.fail() || temperatures[i][1] < -100 || temperatures[i][1] > 150)
+            {
+                cout << "Invalid input. Please enter a valid temperature (-100 to 150).\n";
+                cin.clear(); // Clear error flag
+                cin.ignore(numeric_limits<streamsize>::max(), '\n'); // Discard invalid input
+            }
+        } while (cin.fail() || temperatures[i][1] < -100 || temperatures[i][1] > 150);
 
         totalHigh += temperatures[i][0];
         totalLow += temperatures[i][1];

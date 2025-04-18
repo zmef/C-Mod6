@@ -15,11 +15,20 @@ int main()
     double avgTime = 0.0;
     double lowestTime = 0.0;
 
-    // Input finish times
+    // Input finish times with validation
     for (int x = 0; x < 5; ++x)
     {
-        cout << "Enter time for race " << x + 1 << ": ";
-        cin >> finishTimes[x];
+        do
+        {
+            cout << "Enter time for race " << x + 1 << " (positive value): ";
+            cin >> finishTimes[x];
+            if (finishTimes[x] <= 0 || cin.fail())
+            {
+                cout << "Invalid input. Please enter a positive number.\n";
+                cin.clear(); // Clear error flag
+                cin.ignore(numeric_limits<streamsize>::max(), '\n'); // Discard invalid input
+            }
+        } while (finishTimes[x] <= 0 || cin.fail());
     }
 
     avgTime = getAverage(finishTimes, 5);
