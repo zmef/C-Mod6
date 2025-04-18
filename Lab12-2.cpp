@@ -21,10 +21,19 @@ int main()
     {
         int rowSub = 0;
         while (rowSub < 3 && numOrdered > shipCharges[rowSub][0])
+        {
             rowSub++;
+        }
 
-        cout << "Shipping charge for quantity " << numOrdered << " is $"
-             << shipCharges[rowSub][1] << "\n\n";
+        if (rowSub < 3) // Ensure rowSub is within bounds
+        {
+            cout << "Shipping charge for quantity " << numOrdered << " is $"
+                 << shipCharges[rowSub][1] << "\n\n";
+        }
+        else
+        {
+            cout << "Error: Quantity exceeds defined ranges.\n\n";
+        }
 
         cout << "Enter number ordered (0 or negative to quit): ";
         cin >> numOrdered;
